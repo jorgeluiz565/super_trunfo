@@ -4,23 +4,25 @@
     char estado1;
     char codigo1[4];
     char cidade1[50];
-    int populacao1;
+    unsigned long int populacao1;
     float area1;
     float pib1;
     float densidade1;
     float pibpercapita1;
     int pontosTuristicos1;
+    float superPoder1;
 
 //declaração das variáveis da carta 2
     char estado2;
     char codigo2[4];
     char cidade2[50];
-    int populacao2;
+    unsigned long int populacao2;
     float area2;
     float pib2;
     float densidade2;
     float pibpercapita2;
     int pontosTuristicos2;
+    float superPoder2;
 
 //função entrada de dados da carta 1
 void entradaCarta1(){
@@ -86,6 +88,11 @@ float pibpercapita(){
     pibpercapita2 = (pib2 * 1000000000) / populacao2;
 };
 
+float superPoder(){
+    superPoder1 = (float) populacao1 + area1 + pib1 + pontosTuristicos1 + pibpercapita1 + (1 / densidade1);
+    superPoder2 = (float) populacao2 + area2 + pib2 + pontosTuristicos2 + pibpercapita2 + (1 / densidade2);
+};
+
 //funçaõ de exibição dos dados na tela
 void exibicao(){
     //Exibição dos dados na tela
@@ -103,6 +110,7 @@ void exibicao(){
     printf("Pontos Turísticos: %d \n", pontosTuristicos1);
     printf("Densidade populacional: %.2f km² \n", densidade1);
     printf("PIB per capita: %.2f reais \n", pibpercapita1);
+    printf("Super Poder: %.2f \n", superPoder1);
 
     printf("\n==== CARTA 2 ====\n");
     printf("Estado: %c \n", estado2);
@@ -114,6 +122,17 @@ void exibicao(){
     printf("Pontos Turísticos: %d \n", pontosTuristicos2);
     printf("Densidade populacional: %.2f km² \n", densidade2);
     printf("PIB per capita: %.2f reais \n", pibpercapita2);
+    printf("Super Poder: %.2f \n", superPoder2);
+
+    printf("\n COMPARAÇÃO DAS CARTAS \n");
+    printf("População: (%d)\n", populacao1 > populacao2);
+    printf("Área: (%d)\n", area1 > area2);
+    printf("PIB: (%d)\n", pib1 > pib2);
+    printf("Pontos turísticos: (%d)\n", pontosTuristicos1 > pontosTuristicos2);
+    printf("Densidade populacional: (%d)\n", densidade1 < densidade2);
+    printf("PIB per capita: (%d)\n", pibpercapita1 > pibpercapita2);
+    printf("Super Poder: (%d)\n", superPoder1 > superPoder2);
+
 };
 
 int main()
@@ -122,6 +141,7 @@ int main()
     entradaCarta2();
     densidade();
     pibpercapita();
+    superPoder();
     exibicao();
 
 return 0;
